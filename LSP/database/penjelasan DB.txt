@@ -1,0 +1,34 @@
+-- menambah akun admin
+1. Buka terminal
+2. arahkan ke xampp/bin
+3. mysql -u root
+4. use your_db 
+5. ketik perintah berikut
+INSERT INTO admins (name, email, password) VALUES 
+('Andre', 'andre@gmail.com', MD5('123123123'));
+
+
+CREATE TABLE inventory (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    quantity INT NOT NULL,
+    storage_unit_id INT NOT NULL,
+    barcode VARCHAR(255) NOT NULL UNIQUE,
+    vendor_id INT NOT NULL,
+    FOREIGN KEY (storage_unit_id) REFERENCES storage_units(id),
+    FOREIGN KEY (vendor_id) REFERENCES vendors(id)
+);
+
+CREATE TABLE vendors (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    item VARCHAR(255) NOT NULL,
+    quantity INT NOT NULL
+);
+
+CREATE TABLE storage_units (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    location VARCHAR(255) NOT NULL
+);
